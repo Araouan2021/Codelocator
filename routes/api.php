@@ -14,6 +14,7 @@ Use App\Record;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -45,3 +46,10 @@ Route::delete('records/{id}', function($id) {
     return 204;
 
 });
+*/
+
+Route::get('records', 'RecordController@index');
+Route::get('records/{record}', 'RecordController@show');
+Route::post('records', 'RecordController@store');
+Route::put('records/{record}', 'RecordController@update');
+Route::delete('records/{records}', 'RecordController@delete');
