@@ -53,3 +53,4 @@ Route::get('records/{record}', 'RecordController@show');
 Route::post('records', 'RecordController@store');
 Route::put('records/{record}', 'RecordController@update');
 Route::delete('records/{records}', 'RecordController@delete');
+Route::post('register', 'Auth\RegisterController@register');
