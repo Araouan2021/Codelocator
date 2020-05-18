@@ -41,11 +41,19 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * The user has been registered.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
      */
+
+    protected function registered(Request $request, $user)
+    {
+        $user->generateToken();
+        return response()->json(['data' => $user->toArray()], 201);
+    }
+    
     protected function validator(array $data)
     {
         return Validator::make($data, [
