@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-Use App\Record;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,44 +14,19 @@ Use App\Record;
 |
 */
 
-/*
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
- 
-Route::get('records', function() {
-    // If the Content-Type and Accept headers are set to 'application/json', 
-    // this will return a JSON structure. This will be cleaned up later.
-    return Records::all();
-});
- 
-Route::get('records/{id}', function($id) {
-    return Record::find($id);
+Route::middleware('auth:api')
+    ->get('/user', function (Request $request) {
+        return $request->user();
 });
 
-Route::post('records', function(Request $request) {
-    return Record::create($request->all);
-});
-
-Route::put('records/{id}', function(Request $request, $id) {
-    $record = Record::findOrFail($id);
-    $record->update($request->all());
-
-    return $record;
-});
-
-Route::delete('records/{id}', function($id) {
-    Record::find($id)->delete();
-
-    return 204;
-
-});
-*/
-
-Route::get('records', 'RecordController@index');
-Route::get('records/{record}', 'RecordController@show');
-Route::post('records', 'RecordController@store');
-Route::put('records/{record}', 'RecordController@update');
-Route::delete('records/{records}', 'RecordController@delete');
-Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
+Route::post('register', 'Auth\RegisterController@register');
+
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('records', 'RecordController@index');
+    Route::get('records/{record}', 'RecordController@show');
+    Route::post('records', 'RecordController@store');
+    Route::put('records/{record}', 'RecordController@update');
+    Route::delete('records/{records}', 'RecordController@delete');
+});
