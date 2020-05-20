@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+Use App\Record;
 
 
 /*
@@ -14,19 +14,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')
-    ->get('/user', function (Request $request) {
-        return $request->user();
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
 
-Route::group(['middleware' => 'auth:api'], function() {
+//Route::group(['middleware' => 'auth:api'], function() {
     Route::get('records', 'RecordController@index');
     Route::get('records/{record}', 'RecordController@show');
     Route::post('records', 'RecordController@store');
     Route::put('records/{record}', 'RecordController@update');
     Route::delete('records/{records}', 'RecordController@delete');
-});
+//});

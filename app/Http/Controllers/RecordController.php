@@ -39,4 +39,4 @@ class RecordController extends Controller
         return 204;
     }
 }
-}
+
