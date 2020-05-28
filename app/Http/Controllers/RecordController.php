@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Record;
 
 class RecordController extends Controller
 {
-     public function index()
+    public function index()
     {
         return Record::all();
     }
- 
+
     public function show($id)
     {
         return Record::find($id);
@@ -38,5 +40,7 @@ class RecordController extends Controller
 
         return 204;
     }
+
 }
+
 
